@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Status</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://api.mcstatus.io/v2/status/java/economic-outlets.gl.joinmc.link')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.online) {
+                        document.getElementById('status').innerText = 'online';
+                    } else {
+                        document.getElementById('status').innerText = 'offline';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching server status:', error);
+                    document.getElementById('status').innerText = 'Error fetching status';
+                });
+        });
+    </script>
+</head>
+<body>
+    <h2 id="status">Checking status...</h2>
+</body>
+</html>
